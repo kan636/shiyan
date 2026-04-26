@@ -160,32 +160,34 @@
 </head>
 <body>
 
-<div class="visit-counter">访客 <span id="visitor-count">0</span></div>
+<div class="visit-counter">访客 <span id="total">0</span></div>
 
 <script>
-const key = "guide_unique_visitor";
-const today = new Date().toDateString();
-const lastDate = localStorage.getItem(key+"_date");
-
-if (lastDate !== today) {
-  localStorage.removeItem(key);
-  localStorage.setItem(key+"_date", today);
+function getToday() {
+  return new Date().toISOString().split('T')[0];
 }
 
-if (!localStorage.getItem(key)) {
-  localStorage.setItem(key, "1");
-  fetch("https://api.visitorbadge.io/api/visit?url=https://kan636.github.io/guide.html&unique=1", {
-    mode: "no-cors"
-  });
+const today = getToday();
+const lastDay = localStorage.getItem('today');
+const visited = localStorage.getItem('visited');
+
+// 跨天重置
+if (lastDay !== today) {
+  localStorage.setItem('today', today);
+  localStorage.removeItem('visited');
+  localStorage.setItem('dailyCount', 0);
 }
 
-fetch("https://api.visitorbadge.io/api/count?url=https://kan636.github.io/guide.html", {
-  mode: "no-cors"
-})
-.then(res => res.text())
-.then(num => {
-  document.getElementById("visitor-count").innerText = num || "1";
-});
+let count = parseInt(localStorage.getItem('dailyCount') || 0);
+
+// 当天只加一次
+if (!visited) {
+  count++;
+  localStorage.setItem('dailyCount', count);
+  localStorage.setItem('visited', '1');
+}
+
+document.getElementById('total').innerText = count;
 </script>
 
 <div class="container">
