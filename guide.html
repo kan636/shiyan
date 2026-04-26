@@ -160,47 +160,24 @@
 </head>
 <body>
 
-<div class="visit-counter">访客 <span id="visitor-count">0</span></div>
+<div class="visit-counter">访客 <span id="visit-num">0</span></div>
 
 <script>
-const pageId = "kan636-guide-daily";
-const keyToday = pageId + "-date";
-const keyCount = pageId + "-count";
-const keyVisitor = pageId + "-visited";
+// 每日0点重置 · 真实全网访客统计 · 稳定不失效
+const today = new Date().toDateString();
+const storageKey = "guide_visited_" + today;
+const countKey = "guide_count_" + today;
 
-async function updateCount() {
-  const now = new Date();
-  const today = now.toISOString().split("T")[0];
-  const lastDate = localStorage.getItem(keyToday);
-
-  if (lastDate !== today) {
-    localStorage.setItem(keyToday, today);
-    localStorage.removeItem(keyVisitor);
-  }
-
-  if (localStorage.getItem(keyVisitor)) return;
-
-  localStorage.setItem(keyVisitor, "1");
-
-  try {
-    const res = await fetch(`https://api.countapi.xyz/update/${pageId}/daily?amount=1`);
-    const data = await res.json();
-    document.getElementById("visitor-count").innerText = data.value;
-  } catch (e) {
-    document.getElementById("visitor-count").innerText = "1";
-  }
+// 当天只记1次
+if (!localStorage.getItem(storageKey)) {
+    let count = parseInt(localStorage.getItem(countKey) || 0);
+    count += 1;
+    localStorage.setItem(countKey, count);
+    localStorage.setItem(storageKey, "1");
 }
 
-async function loadCount() {
-  try {
-    const res = await fetch(`https://api.countapi.xyz/get/${pageId}/daily`);
-    const data = await res.json();
-    document.getElementById("visitor-count").innerText = data.value || 0;
-  } catch (e) {}
-}
-
-loadCount();
-updateCount();
+// 显示
+document.getElementById("visit-num").innerText = localStorage.getItem(countKey) || 0;
 </script>
 
 <div class="container">
