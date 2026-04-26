@@ -144,75 +144,93 @@
         .back-btn:hover {
             background: #5848d0;
         }
-        /* 访客样式 */
+        /* 访客统计样式 */
         .visit-counter {
             position: fixed;
             top: 10px;
             right: 10px;
             background: #fff;
-            padding: 4px 10px;
+            padding: 5px 10px;
             border-radius: 50px;
             font-size: 12px;
             color: #333;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
     </style>
 </head>
 <body>
 
-<!-- 每日0点重置 · 当天访客 · 刷新不涨 -->
-<div class="visit-counter">
-    访客
-    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://kan636.github.io/guide.html&count_bg=%23000000&title_bg=%23FFFFFF&icon=&title=&edge_flat=false" alt="">
-</div>
+<!-- 今日访客 显示 -->
+<div class="visit-counter">访客 <span id="count">0</span></div>
 
-    <div class="container">
-        <div class="page-title">📖 免费看漫画教程（无广、无收费）</div>
-        <div class="declaration">
-            <strong>作者声明：</strong>本篇文档所有内容均为免费分享，禁止任何个人或工作室以收费为目的进行传播，如被发现，必究其法律责任！！！
-        </div>
+<script>
+// ======================================
+// 每日0点自动清零 · 当天独立访客 · 刷新不涨
+// ======================================
+function getToday() {
+    return new Date().toISOString().split('T')[0];
+}
+const today = getToday();
+const lastDate = localStorage.getItem('guide_visit_date');
+const hasVisited = localStorage.getItem('guide_visited_today');
 
-        <div class="step-item">
-            <div class="step-title">
-                <span class="step-num">1</span> 下载安装迅雷浏览器
-            </div>
-            <div class="step-content">
-                手机应用商店安装：<span class="highlight">迅雷浏览器</span>（需通过此浏览器观看，可一直看！稳定，无广！）
-            </div>
-            <div class="step-note">
-                注意：是“迅雷浏览器”不是“迅雷”！只有迅雷浏览器才能看！不会的看最下面图片，截图下来！
-            </div>
-        </div>
+// 每天第一次打开才+1
+if (lastDate !== today || !hasVisited) {
+    let count = Number(localStorage.getItem('guide_daily_count') || 0);
+    count += 1;
+    localStorage.setItem('guide_daily_count', count);
+    localStorage.setItem('guide_visit_date', today);
+    localStorage.setItem('guide_visited_today', '1');
+}
 
-        <div class="step-item">
-            <div class="step-title">
-                <span class="step-num">2</span> 复制关键词获取资源
-            </div>
-            <div class="step-content">
-                用迅雷浏览器注册登录后，直接搜索：<span class="highlight">蝴蝶工具</span> 会自动跳转出来！！！
-            </div>
-            <div class="step-note">
-                注意：出不来就复制下面这个英文
-            </div>
-            <div class="code-box">mp1ttyzGS7</div>
-            
-            <div class="img-tip">
-                📌 按照下面图片来就可以！  建议「保存下方图片」收藏防止失联！
-            </div>
-            
-            <img src="教程图1.jpg" alt="教程参考图" class="guide-img">
-        </div>
+// 显示数字
+document.getElementById('count').innerText = localStorage.getItem('guide_daily_count') || 0;
+</script>
 
-        <div class="bottom-tip">
-            ⚠️ 用浏览器在线看！浏览器会自动屏蔽广告！
-        </div>
-
-        <a href="index.html" class="back-btn">← 返回上传页面</a>
+<div class="container">
+    <div class="page-title">📖 免费看漫画教程（无广、无收费）</div>
+    <div class="declaration">
+        <strong>作者声明：</strong>本篇文档所有内容均为免费分享，禁止任何个人或工作室以收费为目的进行传播，如被发现，必究其法律责任！！！
     </div>
+
+    <div class="step-item">
+        <div class="step-title">
+            <span class="step-num">1</span> 下载安装迅雷浏览器
+        </div>
+        <div class="step-content">
+            手机应用商店安装：<span class="highlight">迅雷浏览器</span>（需通过此浏览器观看，可一直看！稳定，无广！）
+        </div>
+        <div class="step-note">
+            注意：是“迅雷浏览器”不是“迅雷”！只有迅雷浏览器才能看！不会的看最下面图片，截图下来！
+        </div>
+    </div>
+
+    <div class="step-item">
+        <div class="step-title">
+            <span class="step-num">2</span> 复制关键词获取资源
+        </div>
+        <div class="step-content">
+            用迅雷浏览器注册登录后，直接搜索：<span class="highlight">蝴蝶工具</span> 会自动跳转出来！！！
+        </div>
+        <div class="step-note">
+            注意：出不来就复制下面这个英文
+        </div>
+        <div class="code-box">mp1ttyzGS7</div>
+        
+        <div class="img-tip">
+            📌 按照下面图片来就可以！  建议「保存下方图片」收藏防止失联！
+        </div>
+        
+        <img src="教程图1.jpg" alt="教程参考图" class="guide-img">
+    </div>
+
+    <div class="bottom-tip">
+        ⚠️ 用浏览器在线看！浏览器会自动屏蔽广告！
+    </div>
+
+    <a href="index.html" class="back-btn">← 返回上传页面</a>
+</div>
 
 </body>
 </html>
