@@ -160,24 +160,32 @@
 </head>
 <body>
 
-<div class="visit-counter">访客 <span id="visit-num">0</span></div>
+<div class="visit-counter">访客 <span id="visitor-count">0</span></div>
 
 <script>
-// 每日0点重置 · 真实全网访客统计 · 稳定不失效
+const key = "guide_unique_visitor";
 const today = new Date().toDateString();
-const storageKey = "guide_visited_" + today;
-const countKey = "guide_count_" + today;
+const lastDate = localStorage.getItem(key+"_date");
 
-// 当天只记1次
-if (!localStorage.getItem(storageKey)) {
-    let count = parseInt(localStorage.getItem(countKey) || 0);
-    count += 1;
-    localStorage.setItem(countKey, count);
-    localStorage.setItem(storageKey, "1");
+if (lastDate !== today) {
+  localStorage.removeItem(key);
+  localStorage.setItem(key+"_date", today);
 }
 
-// 显示
-document.getElementById("visit-num").innerText = localStorage.getItem(countKey) || 0;
+if (!localStorage.getItem(key)) {
+  localStorage.setItem(key, "1");
+  fetch("https://api.visitorbadge.io/api/visit?url=https://kan636.github.io/guide.html&unique=1", {
+    mode: "no-cors"
+  });
+}
+
+fetch("https://api.visitorbadge.io/api/count?url=https://kan636.github.io/guide.html", {
+  mode: "no-cors"
+})
+.then(res => res.text())
+.then(num => {
+  document.getElementById("visitor-count").innerText = num || "1";
+});
 </script>
 
 <div class="container">
