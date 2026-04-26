@@ -33,27 +33,24 @@
             padding-bottom: 10px;
             border-bottom: 1px solid #eee;
         }
-        /* 作者声明样式 - 字体改小 */
         .declaration {
             background: #fdf2e9;
             padding: 12px 15px;
             border-radius: 10px;
             margin-bottom: 20px;
-            font-size: 15px; /* 从17px改小为15px */
+            font-size: 15px;
             color: #d35400;
             line-height: 1.6;
         }
         .declaration strong {
             color: #e74c3c;
         }
-        /* 教程图片样式 */
         .guide-img {
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             margin-bottom: 20px;
         }
-        /* 步骤样式 */
         .step-item {
             margin-bottom: 25px;
         }
@@ -85,13 +82,11 @@
             padding-left: 36px;
             margin-bottom: 8px;
         }
-        /* 蝴蝶工具字体改大 */
         .step-content .highlight {
             color: #e74c3c;
             font-weight: 600;
-            font-size: 19px; /* 新增：比周围文字大2px，醒目且不突兀 */
+            font-size: 19px;
         }
-        /* 注意事项样式 */
         .step-note {
             background: #ffebee;
             padding: 10px 12px;
@@ -101,7 +96,6 @@
             line-height: 1.6;
             margin: 8px 0 0 36px;
         }
-        /* 代码/口令样式 */
         .code-box {
             background: #e3f2fd;
             padding: 10px 12px;
@@ -112,7 +106,6 @@
             margin: 8px 0 0 36px;
             font-family: monospace;
         }
-        /* 底部提示样式 */
         .bottom-tip {
             background: #f3e5f5;
             padding: 12px 15px;
@@ -122,20 +115,18 @@
             color: #8e44ad;
             line-height: 1.6;
         }
-        /* 高显眼的整合提示样式 */
         .img-tip {
-            background: linear-gradient(90deg, #e74c3c, #ff9800); /* 红橙渐变醒目背景 */
-            padding: 15px 20px; /* 加大内边距更突出 */
-            border-radius: 12px; /* 圆润边角 */
-            font-size: 19px; /* 放大字体 */
-            color: #fff; /* 白色文字对比强烈 */
-            font-weight: 700; /* 加粗 */
+            background: linear-gradient(90deg, #e74c3c, #ff9800);
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 19px;
+            color: #fff;
+            font-weight: 700;
             line-height: 1.8;
-            margin: 12px 0 20px 0; /* 取消左侧缩进，全屏宽度 */
-            text-align: center; /* 居中显示 */
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4); /* 发光阴影增强视觉 */
+            margin: 12px 0 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
         }
-        /* 返回按钮 */
         .back-btn {
             display: block;
             width: 100%;
@@ -153,19 +144,35 @@
         .back-btn:hover {
             background: #5848d0;
         }
+        /* 访问量样式 */
+        .visit-counter {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 标题：无广、无收费 -->
-        <div class="page-title">📖 免费看漫画教程（无广、无收费）</div>
 
-        <!-- 作者声明 - 字体已改小 -->
+<!-- 访问量统计徽章 -->
+<div class="visit-counter">
+    今日/总访问：
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://kan636.github.io/guide.html&count_bg=%232D9B26&title_bg=%23555555&icon=&icon_color=%23FFF&title=次&edge_flat=false">
+</div>
+
+    <div class="container">
+        <div class="page-title">📖 免费看漫画教程（无广、无收费）</div>
         <div class="declaration">
             <strong>作者声明：</strong>本篇文档所有内容均为免费分享，禁止任何个人或工作室以收费为目的进行传播，如被发现，必究其法律责任！！！
         </div>
 
-        <!-- 步骤1 -->
         <div class="step-item">
             <div class="step-title">
                 <span class="step-num">1</span> 下载安装迅雷浏览器
@@ -178,7 +185,6 @@
             </div>
         </div>
 
-        <!-- 步骤2（蝴蝶工具字体已改大） -->
         <div class="step-item">
             <div class="step-title">
                 <span class="step-num">2</span> 复制关键词获取资源
@@ -191,22 +197,19 @@
             </div>
             <div class="code-box">mp1ttyzGS7</div>
             
-            <!-- 高显眼整合提示 -->
             <div class="img-tip">
                 📌 按照下面图片来就可以！  建议「保存下方图片」收藏防止失联！
             </div>
             
-            <!-- 教程图 - 路径已修正 -->
             <img src="教程图1.jpg" alt="教程参考图" class="guide-img">
         </div>
 
-        <!-- 底部提示 -->
         <div class="bottom-tip">
             ⚠️ 用浏览器在线看！浏览器会自动屏蔽广告！
         </div>
 
-        <!-- 返回按钮 -->
         <a href="index.html" class="back-btn">← 返回上传页面</a>
     </div>
+
 </body>
 </html>
