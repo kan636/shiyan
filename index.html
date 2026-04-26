@@ -12,6 +12,9 @@ body{
     padding:15px;
     width:100%;
     overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+    -webkit-user-select:none;
+    user-select:none;
 }
 .container{
     max-width:100%;
@@ -27,44 +30,39 @@ body{
     margin-top:10px;
     line-height:1.4;
 }
-
 .swiper{
-    width:100%;
+    width: 100% !important;
+    margin: 0 auto;
     padding:10px 0 35px;
     overflow:visible;
 }
 .swiper-slide{
-  width:50% !important;
-  aspect-ratio:1/1;
+  width: 100% !important; 
   opacity:0.5;
-  transform:scale(0.85);
+  transform:scale(0.9);
   transition:0.4s;
 }
 .swiper-slide-active{
   opacity:1;
-  transform:scale(1);
+  transform:scale(1); 
   z-index:100;
 }
-/* ==========核心提速代码========== */
 .swiper-slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width: 100%;
+  height: auto; 
+  max-height: 70vh; 
+  object-fit: contain; 
   border-radius:16px;
-  /* 硬件加速 + 强制图片加速渲染 */
   transform: translateZ(0);
-  backface-visibility: hidden;
-  image-rendering: high-quality;
   box-shadow:0 8px 20px rgba(0,0,0,0.2);
-  /* 禁止浏览器重新渲染浪费速度 */
-  will-change: transform;
 }
 img{
-    /* 全局图片缓存加速 */
-    image-rendering: auto;
+    content-visibility:auto;
+    display:block;
+    margin: 0 auto;
 }
+img[src=""],img:not([src]){opacity:0;}
 .swiper-pagination{bottom:5px;}
-
 .step-list{
     margin-top:15px;
     display:flex;
@@ -116,10 +114,8 @@ img{
 width:100%;
 border-radius:10px;
 margin:10px 0;
-/* 图片加速 */
 transform:translateZ(0);
 }
-
 .upload-tip-red{
   color:red;
   font-size:16px;
@@ -151,7 +147,7 @@ transform:translateZ(0);
   border:none;
   border-radius:8px;
   padding:12px;
-  font-size:16px;
+  font-size:18px;
   font-weight:bold;
   cursor:pointer;
 }
@@ -160,13 +156,12 @@ transform:translateZ(0);
     color:#4caf50;
     margin-top:10px;
     display:none;
-    font-size:15px;
+    font-size:16px;
 }
-
 .disclaimer{
   background:#f3e5f5;
   padding:15px;
-  border-radius:12px;
+  border-radius:10px;
   margin-top:20px;
   font-size:13px;
   color:#555;
@@ -180,9 +175,6 @@ transform:translateZ(0);
 }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<!-- 预加载只保留关键图，多余预加载反而拖慢 -->
-<link rel="preload" as="image" href="图1.jpg">
-<link rel="preload" as="image" href="图2.jpg">
 </head>
 <body>
 <div class="container">
@@ -190,13 +182,9 @@ transform:translateZ(0);
 
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide"><img loading="lazy" src="图1.jpg"></div>
-    <div class="swiper-slide"><img loading="lazy" src="图2.jpg"></div>
-    <div class="swiper-slide"><img loading="lazy" src="图3.jpg"></div>
-    <div class="swiper-slide"><img loading="lazy" src="图4.jpg"></div>
-    <div class="swiper-slide"><img loading="lazy" src="图5.jpg"></div>
-    <div class="swiper-slide"><img loading="lazy" src="图6.jpg"></div>
-    <div class="swiper-slide"><img loading="lazy" src="图7.jpg"></div>
+    <div class="swiper-slide"><img loading="lazy" src="./images/图1.jpg" alt="漫画动漫资源"></div>
+    <div class="swiper-slide"><img loading="lazy" src="./images/图2.jpg" alt="无广漫画资源"></div>
+    <div class="swiper-slide"><img loading="lazy" src="./images/图3.jpg" alt="漫画资源展示"></div>
   </div>
   <div class="swiper-pagination"></div>
 </div>
@@ -205,47 +193,54 @@ transform:translateZ(0);
     <div class="step-card">
         <div class="step-title" style="color:red;">永久免费更新！苹果ios和安卓都可以用</div>
     </div>
+
     <div class="step-card">
         <div class="step-title" style="color:#000;">第一步：保存下方图片</div>
-        <img loading="lazy" src="保存图1.jpg" class="guide-img">
+        <img loading="lazy" src="./images/保存图1.jpg" class="guide-img" alt="保存指引图">
         <div class="step-note">长按保存图片</div>
     </div>
+
     <div class="step-card">
         <div class="step-title" style="color:#000;">第二步：打开抖音</div>
         <div class="step-content">
            <div class="code-box">搜索： 看漫画 漫画推荐 iOS看漫画 漫画 看漫神器 漫画软件</div>
-            <span style="color:red;">(找一个作品评论保存的图片并截图，要3条作品评论好截屏，如下图所示)</span>
-            <img loading="lazy" src="样品图1.jpg" class="guide-img">
+            <span style="color:red;">(找一个作品，评论刚刚保存的图片并截图，1张截图即可，如下图所示)</span>
+            <img loading="lazy" src="./images/样品图1.jpg" class="guide-img" alt="示例截图">
         </div>
     </div>
+
     <div class="step-card">
         <div class="step-title" style="color:#000;">最后一步：把刚刚评论好的截图点下面上传即可！</div>
         <div class="step-note" style="color:#000; background:#ffebee;">提交完评论截屏后，会自动弹出教程，弹出提交成功的下面就是教程，别点快了！</div>
-        <div class="upload-tip-red">在这里上传三个截图（已连接AI机器人自动审核）</div>
+        <div class="upload-tip-red">在这里上传1张截图（已连接AI机器人自动审核）</div>
         <div class="upload-box" id="uploadArea">
-            <div>📁 上传文件</div>
-            <input type="file" id="fileInput" accept="image/*" multiple>
+            <div>📁 点击上传截图（仅1张）</div>
+            <input type="file" id="fileInput" accept="image/*">
         </div>
         <div class="preview-container" id="previewContainer"></div>
         <button class="submit-btn" id="submitBtn">提交</button>
-        <div class="success-tip" id="successTip">✅ 提交成功！教程已弹出，请往下查看</div>
+        <div class="success-tip" id="successTip">✅ 提交成功！正在跳转到教程页...</div>
     </div>
+
     <div class="disclaimer">
         <div>🎉免责声明:</div>
         本篇文档所有内容均为免费分享，非原创内容，均为网络搜集，归原作者所有，仅用于学习交流，请勿在资源内广告，谨防损失！禁止商业用途、转售、非法牟利。如需优化体验，请支持官方渠道。本文档内容若涉及原作者版权或权益，我们诚恳致歉，请速与我们联系。一经核实，我们将立即消除并移除相关内容，敬请谅解！
     </div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 const swiper = new Swiper('.mySwiper',{
   loop:true,
-  autoplay:{delay:1800,disableOnInteraction:false},
-  slidesPerView:"auto",
+  autoplay:{delay:2000,disableOnInteraction:false},
+  slidesPerView:1, 
   centeredSlides:true,
   effect:"coverflow",
-  coverflowEffect:{rotate:0,stretch:-25,depth:60,modifier:1},
-  pagination:{el:".swiper-pagination"}
+  coverflowEffect:{rotate:0,stretch:0,depth:30,modifier:1.2}, 
+  pagination:{el:".swiper-pagination"},
+  touchRatio:1,
+  simulateTouch:true
 });
 
 const uploadArea=document.getElementById('uploadArea');
@@ -253,27 +248,39 @@ const fileInput=document.getElementById('fileInput');
 const previewContainer=document.getElementById('previewContainer');
 const submitBtn=document.getElementById('submitBtn');
 const successTip=document.getElementById('successTip');
-uploadArea.onclick=()=>fileInput.click();
+
+uploadArea.onclick=()=>{
+    fileInput.click();
+};
 
 fileInput.onchange=e=>{
-previewContainer.innerHTML="";
-Array.from(e.target.files).slice(0,3).forEach(file=>{
-let r=new FileReader();
-r.onload=e=>{
-let img=document.createElement("img");
-img.src=e.target.result;
-img.className="preview-img";
-previewContainer.appendChild(img);
-};
-r.readAsDataURL(file);
-});
+    previewContainer.innerHTML=""; 
+    const files = Array.from(e.target.files).slice(0,1);
+    files.forEach(file=>{
+        const reader = new FileReader();
+        reader.onload=function(event){
+            const img = document.createElement("img");
+            img.src = event.target.result;
+            img.className = "preview-img";
+            previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    });
 };
 
 submitBtn.onclick=()=>{
-if(!fileInput.files.length)return alert("请先上传截图");
-submitBtn.disabled=true;
-successTip.style.display="block";
-setTimeout(()=>location.href="guide.html",1000);
+    if(!fileInput.files.length){
+        alert("请先上传1张截图！");
+        return;
+    }
+    
+    submitBtn.disabled = true;
+    submitBtn.innerText = "提交中...";
+    successTip.style.display = "block";
+    
+    setTimeout(()=>{
+        window.location.href = "./guide.html";
+    }, 1000);
 };
 </script>
 </body>
